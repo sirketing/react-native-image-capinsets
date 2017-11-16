@@ -1,22 +1,30 @@
-import React, { Component } from 'react';
+import React, {
+	PureComponent
+} from 'react';
+
 import {
-  StyleSheet,
-  Image,
+	ImageBackground
 } from 'react-native';
 
-const styles = StyleSheet.create({
+export default class ImageCapInset extends PureComponent {
+	render() {
+		return (
+			<ImageBackground
+				{ ...this.props }
 
-});
+				style={[
+					{
+						width: this.props.width,
+						height: this.props.height
+					},
 
-class ImageCapInset extends Component {
-  render() {
-    return (
-      <Image
-        {...this.props}
-        resizeMode={Image.resizeMode.stretch}
-      />
-    );
-  }
+					this.props.style || {}
+				]}
+
+				resizeMode="stretch">
+
+				{ this.props.children }
+			</ImageBackground>
+		);
+	}
 }
-
-export default ImageCapInset;
